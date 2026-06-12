@@ -1,8 +1,8 @@
 FROM node:24-alpine3.24 AS build
 RUN apk -U upgrade --no-cache
 WORKDIR /app
-COPY package.json tsconfig.json server.ts ./
-RUN npm install && npx tsc
+COPY package.json package-lock.json tsconfig.json server.ts ./
+RUN npm ci && npx tsc
 
 FROM node:24-alpine3.24
 RUN apk -U upgrade --no-cache

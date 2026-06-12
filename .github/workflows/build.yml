@@ -5,6 +5,10 @@ on:
     branches: [main]
     tags: ['v*.*.*']
 
+concurrency:
+  group: build-${{ github.sha }}
+  cancel-in-progress: false
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
